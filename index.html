@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pipelinemaxxing — The HubSpot OS That Guarantees €2.000.000</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Barlow:ital,wght@0,300;0,400;0,500;1,300&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:#100E0B;
+  --ink:#EDE7DC;
+  --red:#D01910;
+  --muted:rgba(237,231,220,.45);
+  --faint:rgba(237,231,220,.06);
+  --rule:rgba(237,231,220,.09);
+}
+
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Barlow',sans-serif;
+  font-weight:300;
+  line-height:1.65;
+  overflow-x:hidden;
+  cursor:none;
+}
+
+#cur{position:fixed;width:7px;height:7px;border-radius:50%;background:var(--red);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s}
+#cur-o{position:fixed;width:28px;height:28px;border-radius:50%;border:1px solid rgba(208,25,16,.4);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:left .13s,top .13s}
+body:has(a:hover) #cur{width:14px;height:14px}
+
+/* NAV */
+nav{
+  position:fixed;inset:0 0 auto;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.5rem 4rem;
+  transition:background .3s,padding .3s,border-color .3s;
+  border-bottom:1px solid transparent;
+}
+nav.on{background:rgba(16,14,11,.92);backdrop-filter:blur(14px);border-color:var(--rule);padding:1rem 4rem}
+.logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.2rem;letter-spacing:.04em;text-transform:uppercase;color:var(--ink);text-decoration:none}
+.logo i{color:var(--red);font-style:normal}
+.nav-r{display:flex;align-items:center;gap:2.5rem}
+.nav-r a:not(.nlink){font-size:.8rem;color:var(--muted);text-decoration:none;font-weight:400;transition:color .2s}
+.nav-r a:not(.nlink):hover{color:var(--ink)}
+.nlink{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:.95rem;letter-spacing:.07em;text-transform:uppercase;background:var(--red);color:#fff;padding:.5rem 1.35rem;text-decoration:none;transition:background .2s}
+.nlink:hover{background:#a8120c}
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  padding:9rem 4rem 5rem;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  position:relative;overflow:hidden;
+}
+.hero-qualify{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.72rem;color:var(--red);
+  letter-spacing:.06em;margin-bottom:2rem;
+}
+.hero h1{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;text-transform:uppercase;
+  font-size:clamp(4.5rem,11vw,10.5rem);
+  line-height:.9;letter-spacing:-.01em;
+  max-width:14ch;
+}
+.hero h1 em{font-style:normal;color:var(--red)}
+.hero-row{
+  display:flex;align-items:flex-end;
+  justify-content:space-between;
+  gap:4rem;margin-top:3.5rem;flex-wrap:wrap;
+}
+.hero-body{
+  max-width:42ch;font-size:.96rem;
+  color:var(--muted);line-height:1.82;
+}
+.hero-body strong{color:var(--ink);font-weight:400}
+.hero-side{flex-shrink:0}
+.hero-guarantee{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:700;font-size:1.3rem;
+  letter-spacing:.02em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:1.5rem;
+}
+.btn-r{
+  display:inline-block;
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;font-size:1rem;letter-spacing:.08em;text-transform:uppercase;
+  background:var(--red);color:#fff;
+  padding:.85rem 2rem;text-decoration:none;
+  transition:background .2s,transform .15s;
+}
+.btn-r:hover{background:#a8120c;transform:translateY(-2px)}
+.hero-ghost{
+  position:absolute;right:-1rem;bottom:-2rem;
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:clamp(12rem,30vw,26rem);text-transform:uppercase;
+  line-height:1;color:rgba(237,231,220,.025);
+  letter-spacing:-.02em;pointer-events:none;user-select:none;
+}
+
+/* DIVIDER LINE */
+.rule{height:1px;background:var(--rule);margin:0 4rem}
+
+/* PRODUCT */
+.product{padding:7rem 4rem}
+.product-top{
+  display:flex;align-items:flex-end;
+  justify-content:space-between;
+  gap:4rem;margin-bottom:5rem;flex-wrap:wrap;
+}
+.product-h{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;font-size:clamp(3rem,6vw,5.5rem);
+  text-transform:uppercase;letter-spacing:-.01em;line-height:.92;
+}
+.product-h em{font-style:normal;color:var(--red)}
+.product-tag{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.65rem;color:var(--red);letter-spacing:.1em;margin-bottom:1rem;
+}
+.product-right-top{max-width:42ch}
+.product-desc{font-size:.92rem;color:var(--muted);line-height:1.82}
+.product-desc strong{color:var(--ink);font-weight:400}
+
+/* deliverables — 2 col, no boxes */
+.del-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:0;padding-top:4rem;
+  border-top:1px solid var(--rule);
+}
+.del-col{padding-right:6rem}
+.del-col:last-child{padding-right:0;padding-left:6rem;border-left:1px solid var(--rule)}
+.del-label{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--red);margin-bottom:1.5rem;
+}
+.del-item{
+  display:flex;gap:.75rem;align-items:baseline;
+  padding:.55rem 0;border-bottom:1px solid var(--rule);
+  font-size:.88rem;color:var(--ink);line-height:1.4;
+}
+.del-item:last-child{border-bottom:none}
+.del-item::before{content:'—';color:var(--red);flex-shrink:0;font-size:.7rem}
+
+/* pricing row */
+.pricing-row{
+  display:flex;align-items:center;
+  gap:5rem;margin-top:5rem;padding-top:4rem;
+  border-top:1px solid var(--rule);flex-wrap:wrap;
+}
+.price-block{}
+.price-lbl{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:.4rem}
+.price-n{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;font-size:2.8rem;letter-spacing:-.01em;line-height:1;
+}
+.price-sub{font-size:.75rem;color:var(--muted);margin-top:.3rem}
+.price-sep{width:1px;height:4rem;background:var(--rule);flex-shrink:0}
+.guarantee-tag{
+  display:flex;align-items:center;gap:1rem;flex:1;min-width:220px;
+}
+.g-circle{
+  width:3.75rem;height:3.75rem;border-radius:50%;
+  border:2px solid var(--red);flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:.5rem;letter-spacing:.06em;line-height:1.35;
+  color:var(--red);text-transform:uppercase;text-align:center;
+}
+.g-text{font-size:.82rem;color:var(--muted);line-height:1.6}
+.g-text strong{color:var(--ink);font-weight:400;display:block}
+
+/* PROBLEMS */
+.problems{background:#0C0A08;padding:0}
+.prob-head{
+  padding:5rem 4rem;
+  display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;
+  border-bottom:1px solid var(--rule);
+}
+.prob-head h2{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;font-size:clamp(2.5rem,5vw,4.5rem);
+  text-transform:uppercase;letter-spacing:-.01em;line-height:.92;
+}
+.prob-hint{font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:var(--muted);letter-spacing:.06em}
+.prob-grid{display:grid;grid-template-columns:1fr 1fr}
+.prob{
+  padding:3rem 4rem;
+  border-right:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+  transition:background .25s;cursor:none;overflow:hidden;
+}
+.prob:nth-child(even){border-right:none}
+.prob:nth-child(5),.prob:nth-child(6){border-bottom:none}
+.prob:hover{background:rgba(208,25,16,.05)}
+.prob-n{font-family:'IBM Plex Mono',monospace;font-size:.6rem;color:var(--red);letter-spacing:.1em;margin-bottom:1rem}
+.prob-title{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:800;font-size:1.3rem;text-transform:uppercase;
+  letter-spacing:.01em;line-height:1.15;transition:color .25s;
+}
+.prob:hover .prob-title{color:var(--red)}
+.prob-syms{list-style:none;margin-top:1.5rem;max-height:0;overflow:hidden;opacity:0;transition:max-height .4s ease,opacity .35s ease}
+.prob:hover .prob-syms{max-height:200px;opacity:1}
+.prob-syms li{font-size:.8rem;color:var(--muted);padding:.25rem 0;line-height:1.5}
+.prob-syms li::before{content:'→  ';color:var(--red)}
+
+/* PROCESS */
+.process{padding:7rem 4rem;border-top:1px solid var(--rule)}
+.process-head{margin-bottom:5rem}
+.process-head h2{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;font-size:clamp(2.5rem,5vw,4.5rem);
+  text-transform:uppercase;letter-spacing:-.01em;line-height:.92;
+}
+.process-sub{font-size:.92rem;color:var(--muted);margin-top:1.25rem;max-width:52ch;line-height:1.8}
+.process-sub strong{color:var(--ink);font-weight:400}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.stp{padding:0 3rem 0 0;position:relative}
+.stp:first-child{padding-left:0}
+.stp:last-child{padding-right:0}
+/* connector */
+.stp:not(:last-child)::after{
+  content:'';position:absolute;right:0;top:1.1rem;
+  width:1px;height:2.5rem;background:var(--rule);
+}
+.stp-n{font-family:'IBM Plex Mono',monospace;font-size:.6rem;color:var(--red);letter-spacing:.1em;margin-bottom:1rem}
+.stp-dot{width:1.2rem;height:1.2rem;border-radius:50%;border:2px solid var(--muted);margin-bottom:1.5rem;transition:border-color .3s,background .3s}
+.stp:hover .stp-dot{border-color:var(--red);background:var(--red)}
+.stp-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;text-transform:uppercase;letter-spacing:.01em;margin-bottom:.6rem}
+.stp-desc{font-size:.82rem;color:var(--muted);line-height:1.68}
+.process-ctas{display:flex;gap:1.25rem;align-items:center;margin-top:5rem;padding-top:4rem;border-top:1px solid var(--rule);flex-wrap:wrap}
+.btn-ghost{font-size:.82rem;color:var(--muted);text-decoration:none;font-weight:400;transition:color .2s}
+.btn-ghost:hover{color:var(--ink)}
+
+/* TESTIMONIALS */
+.testi{background:#0C0A08;padding:7rem 4rem;border-top:1px solid var(--rule)}
+.testi-head{margin-bottom:5rem}
+.testi-head h2{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;font-size:clamp(2.5rem,5vw,4.5rem);
+  text-transform:uppercase;letter-spacing:-.01em;line-height:.92;
+}
+.testi-head p{font-size:.9rem;color:var(--muted);margin-top:1rem;max-width:48ch;line-height:1.8}
+
+/* staggered 2-col quotes */
+.testi-wrap{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.tc{background:var(--faint);padding:2.5rem;display:flex;flex-direction:column;gap:1.5rem;transition:background .25s}
+.tc:hover{background:rgba(237,231,220,.09)}
+.tc-q{font-size:.92rem;color:var(--muted);line-height:1.82;font-style:italic;flex:1}
+.tc-q strong{color:var(--ink);font-style:normal;font-weight:400}
+.tc-who{display:flex;align-items:center;gap:.85rem}
+.tc-av{width:2.1rem;height:2.1rem;border-radius:50%;background:rgba(208,25,16,.15);border:1px solid rgba(208,25,16,.3);display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:.58rem;color:var(--red);flex-shrink:0}
+.tc-name{font-size:.82rem;font-weight:400;color:var(--ink)}
+.tc-role{font-size:.7rem;color:var(--muted);margin-top:.1rem}
+/* tall card spans 2 rows */
+.tc.tall{grid-row:span 2}
+
+/* CTA */
+.end{
+  background:var(--red);
+  padding:7rem 4rem;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:4rem;flex-wrap:wrap;
+}
+.end-left h2{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;font-size:clamp(3rem,6.5vw,6rem);
+  text-transform:uppercase;letter-spacing:-.01em;line-height:.9;
+  color:#fff;max-width:14ch;
+}
+.end-left p{font-size:.95rem;color:rgba(255,255,255,.65);margin-top:1.5rem;max-width:44ch;line-height:1.8;font-weight:300}
+.end-right{display:flex;flex-direction:column;gap:.9rem;align-items:flex-start}
+.btn-w{
+  display:inline-block;
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;font-size:1.05rem;letter-spacing:.08em;text-transform:uppercase;
+  background:#fff;color:var(--red);
+  padding:.9rem 2.25rem;text-decoration:none;
+  transition:background .2s;
+}
+.btn-w:hover{background:#f0ebe4}
+.end-note{font-family:'IBM Plex Mono',monospace;font-size:.63rem;color:rgba(255,255,255,.45);letter-spacing:.04em}
+
+/* reveal */
+.v{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.v.in{opacity:1;transform:none}
+.v.d1{transition-delay:.1s}.v.d2{transition-delay:.2s}.v.d3{transition-delay:.3s}
+
+@media(max-width:860px){
+  nav,nav.on{padding:1.1rem 1.5rem}
+  .nav-r a:not(.nlink){display:none}
+  .hero{padding:8rem 1.5rem 4rem}
+  .rule{margin:0 1.5rem}
+  .product,.process,.testi,.end{padding:5rem 1.5rem}
+  .product-top{flex-direction:column;gap:2rem;margin-bottom:3rem}
+  .del-grid{grid-template-columns:1fr;gap:3rem}
+  .del-col:last-child{padding-left:0;border-left:none;border-top:1px solid var(--rule);padding-top:3rem}
+  .del-col{padding-right:0}
+  .pricing-row{gap:2rem}
+  .prob-head{padding:3.5rem 1.5rem}
+  .prob-grid{grid-template-columns:1fr}
+  .prob{border-right:none;padding:2.5rem 1.5rem}
+  .prob:nth-child(5){border-bottom:1px solid var(--rule)}
+  .steps{grid-template-columns:1fr 1fr;gap:3rem 2rem}
+  .stp:not(:last-child)::after{display:none}
+  .stp{padding:0}
+  .testi-wrap{grid-template-columns:1fr}
+  .tc.tall{grid-row:span 1}
+  .end{padding:5rem 1.5rem;flex-direction:column}
+  .hero-ghost{display:none}
+}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="cur-o"></div>
+
+<nav id="nav">
+  <a href="#" class="logo">Pipeline<i>maxxing</i></a>
+  <div class="nav-r">
+    <a href="#product">The OS</a>
+    <a href="#problems">Problems</a>
+    <a href="#process">Process</a>
+    <a href="#testi">Results</a>
+    <a href="#cta" class="nlink">Growth Assessment</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-qualify v">Does your company sell Annual Contract Values of €25.000 or more?</p>
+  <h1 class="v d1">The HubSpot OS That <em>Guarantees</em> €2.000.000</h1>
+  <div class="hero-row">
+    <p class="hero-body v d2">
+      I've built an operating system that guarantees you <strong>€2.000.000 in qualified pipeline</strong> within a year of working together. This isn't marketing fluff — I pay everything back if you don't hit it.
+      <br><br>
+      What's an operating system? A proven way of working, for my business and every client I've run it with. You get a daily list of actions built into HubSpot that your team just has to execute.
+      <br><br>
+      You do have to qualify for this offer. Take the growth assessment to find out.
+    </p>
+    <div class="hero-side v d2">
+      <p class="hero-guarantee">With a 100% money-back guarantee.</p>
+      <a href="#cta" class="btn-r">Check If You Qualify</a>
+    </div>
+  </div>
+  <div class="hero-ghost" aria-hidden="true">€2M</div>
+</section>
+
+<div class="rule"></div>
+
+<!-- PRODUCT / OS -->
+<section id="product" class="product">
+  <div class="product-top">
+    <div class="v">
+      <p class="product-tag">The Operating System</p>
+      <h2 class="product-h">Pipeline OS<br><em>by Pipelinemaxxing</em></h2>
+    </div>
+    <div class="product-right-top v d1">
+      <p class="product-desc">
+        Not a consulting engagement. Not a strategy doc. A <strong>fully operational HubSpot setup</strong> with daily to-dos baked in — so your team knows exactly what to do to fill your pipeline, every single day.
+        <br><br>
+        I run the same system in my own business. If it didn't work for me, I wouldn't sell it.
+      </p>
+    </div>
+  </div>
+
+  <div class="del-grid v">
+    <div class="del-col">
+      <p class="del-label">HubSpot Resources</p>
+      <div class="del-item">Surroundbound dashboard</div>
+      <div class="del-item">5 automation workflows</div>
+      <div class="del-item">Prospecting sequence: 9 touches over 14 days</div>
+      <div class="del-item">Custom object views, lists and team views</div>
+      <div class="del-item">Video guides on every aspect of the workflow</div>
+    </div>
+    <div class="del-col">
+      <p class="del-label">Guides</p>
+      <div class="del-item">Optimising your LinkedIn</div>
+      <div class="del-item">Using Sales Navigator</div>
+      <div class="del-item">Leveraging Surfe</div>
+      <br>
+      <p class="del-label" style="margin-top:1rem">And much more...</p>
+    </div>
+  </div>
+
+  <div class="pricing-row v">
+    <div class="price-block">
+      <p class="price-lbl">3rd party software</p>
+      <p class="price-n">€327</p>
+      <p class="price-sub">per seller / per month</p>
+    </div>
+    <div class="price-sep"></div>
+    <div class="price-block">
+      <p class="price-lbl">One-time setup fee</p>
+      <p class="price-n">€25.000</p>
+      <p class="price-sub">billed at project start</p>
+    </div>
+    <div class="price-sep"></div>
+    <div class="guarantee-tag">
+      <div class="g-circle">100%<br>Money<br>Back</div>
+      <div class="g-text">
+        <strong>100% money-back guarantee</strong>
+        €2.000.000 in qualified pipeline within 12 months — or I pay everything back. T&Cs apply.
+      </div>
+    </div>
+    <a href="#cta" class="btn-r" style="margin-left:auto;white-space:nowrap">Discover How →</a>
+  </div>
+</section>
+
+<!-- PROBLEMS -->
+<section id="problems" class="problems">
+  <div class="prob-head v">
+    <h2>Problems I Solve</h2>
+    <p class="prob-hint">Hover to see the symptoms</p>
+  </div>
+  <div class="prob-grid">
+    <div class="prob v">
+      <p class="prob-n">01</p>
+      <h3 class="prob-title">You're flying blind on sales performance</h3>
+      <ul class="prob-syms">
+        <li>Don't know your actual win/loss ratio across deals</li>
+        <li>Can't see conversion rates between pipeline stages</li>
+        <li>No data on how long prospects take to close</li>
+        <li>Sales forecasts are estimates based on gut feeling</li>
+      </ul>
+    </div>
+    <div class="prob v d1">
+      <p class="prob-n">02</p>
+      <h3 class="prob-title">Your revenue is unpredictable</h3>
+      <ul class="prob-syms">
+        <li>New business only comes through referrals</li>
+        <li>No consistent flow of new prospects in pipeline</li>
+        <li>Revenue spikes and dips based on project timing</li>
+        <li>Can't forecast monthly income with any accuracy</li>
+      </ul>
+    </div>
+    <div class="prob v">
+      <p class="prob-n">03</p>
+      <h3 class="prob-title">Your CRM contains no useful data</h3>
+      <ul class="prob-syms">
+        <li>Data is dirty and nobody trusts what's in there</li>
+        <li>No shared definition of a qualified lead</li>
+        <li>Workflows that silently broke months ago</li>
+        <li>Contacts not segmented by ICP or deal stage</li>
+      </ul>
+    </div>
+    <div class="prob v d1">
+      <p class="prob-n">04</p>
+      <h3 class="prob-title">Constantly switching between tactics</h3>
+      <ul class="prob-syms">
+        <li>LinkedIn one month, events the next, content after that</li>
+        <li>No systematic approach to testing what actually works</li>
+        <li>Abandon initiatives before measuring effectiveness</li>
+        <li>Can't connect any activity to real pipeline</li>
+      </ul>
+    </div>
+    <div class="prob v">
+      <p class="prob-n">05</p>
+      <h3 class="prob-title">Sales team scaling is slow and expensive</h3>
+      <ul class="prob-syms">
+        <li>New hires take 3+ months to handle calls independently</li>
+        <li>Client relationships tied to specific team members</li>
+        <li>No documented qualification or sales methodology</li>
+        <li>Knowledge walks out the door when people leave</li>
+      </ul>
+    </div>
+    <div class="prob v d1">
+      <p class="prob-n">06</p>
+      <h3 class="prob-title">Lead generation has no measurable results</h3>
+      <ul class="prob-syms">
+        <li>Tried LinkedIn, content, events — can't trace any to revenue</li>
+        <li>No inbound flow despite genuine technical expertise</li>
+        <li>Can't identify which activities generate qualified leads</li>
+        <li>Time wasted on prospects who will never convert</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" class="process">
+  <div class="process-head v">
+    <h2>Here's a Quick Breakdown<br>of Our Onboarding</h2>
+    <p class="process-sub">Four phases. Fully scoped upfront. <strong>You know what happens at every step</strong> — no surprises, no scope creep.</p>
+  </div>
+  <div class="steps">
+    <div class="stp v">
+      <p class="stp-n">PHASE 01</p>
+      <div class="stp-dot"></div>
+      <h3 class="stp-title">Growth Assessment</h3>
+      <p class="stp-desc">We audit your HubSpot setup, pipeline data, and sales motion to find the biggest leverage points — and confirm you qualify for the guarantee.</p>
+    </div>
+    <div class="stp v d1">
+      <p class="stp-n">PHASE 02</p>
+      <div class="stp-dot"></div>
+      <h3 class="stp-title">Plan Creation</h3>
+      <p class="stp-desc">I design your custom Pipeline OS: ICP definition, sequence architecture, HubSpot configuration, and a clear 12-month milestone map. You sign off before I build anything.</p>
+    </div>
+    <div class="stp v d2">
+      <p class="stp-n">PHASE 03</p>
+      <div class="stp-dot"></div>
+      <h3 class="stp-title">Implementation</h3>
+      <p class="stp-desc">I build everything — dashboards, sequences, workflows, playbooks, views — and train your team on the daily execution. Fast, clean, exactly as scoped.</p>
+    </div>
+    <div class="stp v d3">
+      <p class="stp-n">PHASE 04</p>
+      <div class="stp-dot"></div>
+      <h3 class="stp-title">Aftercare</h3>
+      <p class="stp-desc">Weekly check-ins, data reviews, and ongoing optimisation until you hit €2M. I stay in it with you — not just at launch, but through the whole year.</p>
+    </div>
+  </div>
+  <div class="process-ctas v">
+    <a href="#cta" class="btn-r">Book a Growth Assessment</a>
+    <a href="#product" class="btn-ghost">Learn about the Pipeline OS →</a>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testi" class="testi">
+  <div class="testi-head v">
+    <h2>Here's All The ❤️ I Get</h2>
+    <p>50+ projects delivered across B2B SaaS. Here's what happens when the OS actually runs.</p>
+  </div>
+  <div class="testi-wrap">
+    <div class="tc tall v">
+      <p class="tc-q">"I've been working with HubSpot for almost 10 years and it was never this exciting to rethink how I use it. The collaboration was always constructive, always focused on the best outcome. <strong>We shared the same passion for clean data</strong>, and Mohamad consistently pushed me to step out of my comfort zone. That mix of collaboration and practical HubSpot expertise has set us up for a far more scalable future."</p>
+      <div class="tc-who">
+        <div class="tc-av">JB</div>
+        <div><p class="tc-name">Juliane Berger</p><p class="tc-role">Customer Success — Enersee</p></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:1.5rem">
+      <div class="tc v d1">
+        <p class="tc-q">"What stands out most is that <strong>Mohamad runs his own sales operation the exact same way he coaches others to run theirs.</strong> Same pipeline logic. Same qualification rules. If it didn't work in his own business, it wouldn't be in the system he's teaching."</p>
+        <div class="tc-who">
+          <div class="tc-av">DW</div>
+          <div><p class="tc-name">Douwe Wester</p><p class="tc-role">Founder — WhyThey</p></div>
+        </div>
+      </div>
+      <div class="tc v d2">
+        <p class="tc-q">"Outstanding job setting up our HubSpot CRM and implementing automated sales funnels. <strong>They refined our processes in a way that made a significant difference to our efficiency.</strong> A true asset."</p>
+        <div class="tc-who">
+          <div class="tc-av">PP</div>
+          <div><p class="tc-name">Philip Poppe</p><p class="tc-role">Founder — Transmate</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="tc v">
+      <p class="tc-q">"<strong>Working with Mohamad is not paying for a beautiful slide deck — it's paying for an outcome.</strong> He dives deep into everything that impacts that outcome, beyond expectations, and builds a process that works. There are no holy cows in his mind."</p>
+      <div class="tc-who">
+        <div class="tc-av">FV</div>
+        <div><p class="tc-name">Filip Vanhoorelbeke</p><p class="tc-role">CEO — Enersee</p></div>
+      </div>
+    </div>
+    <div class="tc v d1">
+      <p class="tc-q">"<strong>Expertise in systematisation is unprecedented.</strong> Thanks to the optimisations we've leapt forward in just 3 months after 2 years of stagnation."</p>
+      <div class="tc-who">
+        <div class="tc-av">SH</div>
+        <div><p class="tc-name">Steve Hansen</p><p class="tc-role">CTO — Memoreaz</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- END CTA -->
+<section id="cta" class="end">
+  <div class="end-left v">
+    <h2>Book a Growth Assessment</h2>
+    <p>30 minutes. I'll tell you honestly whether the guarantee applies to your situation — and exactly what it would take to get you to €2.000.000 in qualified pipeline.</p>
+  </div>
+  <div class="end-right v d1">
+    <a href="#" class="btn-w">Book Your Assessment →</a>
+    <span class="end-note">You have to qualify — but let's find out.</span>
+  </div>
+</section>
+
+<script>
+const cur=document.getElementById('cur'),curo=document.getElementById('cur-o');
+let mx=0,my=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+(function loop(){curo.style.left=mx+'px';curo.style.top=my+'px';requestAnimationFrame(loop)})();
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('on',scrollY>50));
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1});
+document.querySelectorAll('.v').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
