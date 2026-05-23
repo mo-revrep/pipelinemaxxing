@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pipelinemaxxing — The HubSpot OS That Guarantees €2.000.000</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Barlow:ital,wght@0,300;0,400;0,500;1,300&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Barlow:ital,wght@0,300;0,400;0,500;1,300&family=IBM+Plex+Mono:wght@400&family=Press+Start+2P&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
@@ -50,42 +50,116 @@ nav.on{background:rgba(242,232,232,.95);backdrop-filter:blur(14px);border-color:
 .nlink{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:.95rem;letter-spacing:.07em;text-transform:uppercase;background:var(--red);color:#fff;padding:.5rem 1.35rem;text-decoration:none;transition:background .2s}
 .nlink:hover{background:#a8120c}
 
+/* BANNER */
+.site-banner{
+  width:100%;background:#fff;
+  border-bottom:none;
+  padding-top:70px; /* nav offset */
+}
+.banner-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:2.5rem 4rem;gap:2rem;flex-wrap:wrap;
+}
+.banner-logo{
+  flex-shrink:0;
+  width:56px;height:56px;
+  background:var(--red);
+  display:flex;align-items:center;justify-content:center;
+  border-radius:4px;
+}
+.banner-r{
+  font-family:'Press Start 2P',monospace;
+  font-size:1.6rem;color:#fff;line-height:1;
+}
+.banner-center{text-align:center;flex:1}
+.banner-headline{
+  font-family:'Press Start 2P',monospace;
+  font-size:clamp(.9rem,2vw,1.4rem);
+  color:#111;line-height:1.6;
+  letter-spacing:-.02em;
+}
+.banner-headline span{color:var(--red)}
+.banner-sub{
+  font-family:'Barlow',sans-serif;
+  font-size:clamp(.8rem,1.2vw,1rem);
+  color:#444;margin-top:.75rem;font-weight:400;
+}
+.banner-f1{
+  display:flex;align-items:center;gap:.75rem;flex-shrink:0;
+}
+.banner-lines{display:flex;flex-direction:column;gap:3px}
+.banner-lines span{display:block;height:2px;background:#999}
+.banner-lines span:nth-child(1){width:2rem}
+.banner-lines span:nth-child(2){width:1.4rem}
+.banner-lines span:nth-child(3){width:.8rem}
+.banner-tagline{
+  font-family:'Barlow',sans-serif;
+  font-weight:600;font-size:.9rem;color:#111;white-space:nowrap;
+}
+.banner-tagline em{font-style:normal;color:var(--red)}
+.banner-car{font-size:2rem;animation:vroom 2.5s ease-in-out infinite alternate}
+.banner-redbar{height:8px;background:var(--red);width:100%}
+
 /* HERO */
 .hero{
-  min-height:100vh;
-  padding:9rem 4rem 5rem;
-  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:5rem 4rem 5rem;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:5rem;align-items:center;
   position:relative;overflow:hidden;
+  border-bottom:1px solid var(--rule);
 }
 .hero-qualify{
   font-family:'IBM Plex Mono',monospace;
   font-size:.72rem;color:var(--red);
-  letter-spacing:.06em;margin-bottom:2rem;
+  letter-spacing:.06em;margin-bottom:2rem;display:block;
 }
 .hero h1{
   font-family:'Barlow Condensed',sans-serif;
   font-weight:900;text-transform:uppercase;
-  font-size:clamp(4.5rem,11vw,10.5rem);
+  font-size:clamp(3.5rem,7.5vw,7rem);
   line-height:.9;letter-spacing:-.01em;
-  max-width:14ch;
 }
 .hero h1 em{font-style:normal;color:var(--red)}
-.hero-row{
-  display:flex;align-items:flex-end;
-  justify-content:space-between;
-  gap:4rem;margin-top:3.5rem;flex-wrap:wrap;
-}
-.hero-body{
-  max-width:42ch;font-size:.96rem;
-  color:var(--muted);line-height:1.82;
-}
-.hero-body strong{color:var(--ink);font-weight:400}
-.hero-side{flex-shrink:0}
 .hero-guarantee{
   font-family:'Barlow Condensed',sans-serif;
-  font-weight:700;font-size:1.3rem;
+  font-weight:700;font-size:1.2rem;
   letter-spacing:.02em;text-transform:uppercase;
-  color:var(--muted);margin-bottom:1.5rem;
+  color:var(--muted);margin-top:.75rem;display:block;
+}
+.hero-right{
+  display:flex;flex-direction:column;gap:2rem;
+  padding-bottom:.5rem;
+}
+.hero-body{
+  font-size:.96rem;color:var(--muted);line-height:1.82;
+}
+.hero-body strong{color:var(--ink);font-weight:400}
+.hero-stats{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1.5rem;
+  padding:1.75rem 0;
+  border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+}
+.hstat{display:flex;flex-direction:column;gap:.3rem}
+.hstat-n{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;font-size:1.9rem;
+  color:var(--red);letter-spacing:-.01em;line-height:1;
+}
+.hstat-l{font-size:.72rem;color:var(--muted);line-height:1.4}
+.hero-actions{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
+.hero-link{font-size:.82rem;color:var(--muted);text-decoration:none;transition:color .2s}
+.hero-link:hover{color:var(--ink)}
+.hero-side{flex-shrink:0}
+.hero-ghost{
+  position:absolute;right:-1rem;bottom:-3rem;
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:clamp(12rem,28vw,24rem);text-transform:uppercase;
+  line-height:1;color:rgba(208,25,16,.05);
+  letter-spacing:-.02em;pointer-events:none;user-select:none;
+  grid-column:span 2;
 }
 .btn-r{
   display:inline-block;
@@ -96,13 +170,6 @@ nav.on{background:rgba(242,232,232,.95);backdrop-filter:blur(14px);border-color:
   transition:background .2s,transform .15s;
 }
 .btn-r:hover{background:#a8120c;transform:translateY(-2px)}
-.hero-ghost{
-  position:absolute;right:-1rem;bottom:-2rem;
-  font-family:'Barlow Condensed',sans-serif;font-weight:900;
-  font-size:clamp(12rem,30vw,26rem);text-transform:uppercase;
-  line-height:1;color:rgba(237,231,220,.025);
-  letter-spacing:-.02em;pointer-events:none;user-select:none;
-}
 
 /* F1 STRIP */
 .f1-strip{
@@ -332,7 +399,7 @@ nav.on{background:rgba(242,232,232,.95);backdrop-filter:blur(14px);border-color:
 @media(max-width:860px){
   nav,nav.on{padding:1.1rem 1.5rem}
   .nav-r a:not(.nlink){display:none}
-  .hero{padding:8rem 1.5rem 4rem}
+  .hero{padding:8rem 1.5rem 4rem;grid-template-columns:1fr;gap:3rem}
   .rule{margin:0 1.5rem}
   .product,.process,.testi,.end{padding:5rem 1.5rem}
   .product-top{flex-direction:column;gap:2rem;margin-bottom:3rem}
@@ -370,38 +437,95 @@ nav.on{background:rgba(242,232,232,.95);backdrop-filter:blur(14px);border-color:
   </div>
 </nav>
 
+<!-- BANNER -->
+<div class="site-banner">
+  <div class="banner-inner">
+    <div class="banner-logo">
+      <span class="banner-r">r</span>
+    </div>
+    <div class="banner-center">
+      <p class="banner-headline">No Sales Ops team? <span>No problem.</span></p>
+      <p class="banner-sub">Scale your SaaS on HubSpot without hiring extra headcount.</p>
+    </div>
+    <div class="banner-f1">
+      <div class="banner-lines"><span></span><span></span><span></span></div>
+      <p class="banner-tagline">Lets tune your <em>Revenue Engine</em></p>
+      <span class="banner-car">🏎️</span>
+    </div>
+  </div>
+  <div class="banner-redbar"></div>
+</div>
+
 <!-- HERO -->
 <section class="hero">
-  <p class="hero-qualify v">Does your company sell Annual Contract Values of €25.000 or more?</p>
-  <h1 class="v d1">The HubSpot OS That <em>Guarantees</em> €2.000.000</h1>
-  <div class="hero-row">
-    <p class="hero-body v d2">
+  <div class="hero-left">
+    <p class="hero-qualify v">Does your company sell Annual Contract Values of €25.000 or more?</p>
+    <h1 class="v d1">The HubSpot OS That <em>Guarantees</em> €2.000.000</h1>
+    <p class="hero-guarantee v d2">With a 100% money-back guarantee.</p>
+  </div>
+  <div class="hero-right v d2">
+    <p class="hero-body">
       I've built an operating system that guarantees you <strong>€2.000.000 in qualified pipeline</strong> within a year of working together. This isn't marketing fluff — I pay everything back if you don't hit it.
       <br><br>
       What's an operating system? A proven way of working, for my business and every client I've run it with. You get a daily list of actions built into HubSpot that your team just has to execute.
-      <br><br>
-      You do have to qualify for this offer. Take the growth assessment to find out.
     </p>
-    <div class="hero-side v d2">
-      <p class="hero-guarantee">With a 100% money-back guarantee.</p>
+    <div class="hero-stats">
+      <div class="hstat">
+        <span class="hstat-n">50+</span>
+        <span class="hstat-l">HubSpot projects delivered</span>
+      </div>
+      <div class="hstat">
+        <span class="hstat-n">€5M</span>
+        <span class="hstat-l">Max ARR of clients we work with</span>
+      </div>
+      <div class="hstat">
+        <span class="hstat-n">100%</span>
+        <span class="hstat-l">Money-back if you don't hit €2M</span>
+      </div>
+    </div>
+    <div class="hero-actions">
       <a href="#cta" class="btn-r">Check If You Qualify</a>
+      <a href="#product" class="hero-link">See what's included →</a>
     </div>
   </div>
   <div class="hero-ghost" aria-hidden="true">€2M</div>
 </section>
 
 <div class="rule"></div>
-
-<!-- F1 STRIP -->
-<div class="f1-strip">
-  <div class="f1-strip-inner">
-    <div class="f1-lines" aria-hidden="true">
-      <span></span><span></span><span></span>
-    </div>
-    <p class="f1-text">Lets tune your <em>Revenue Engine</em></p>
-    <div class="f1-car" aria-hidden="true">🏎️</div>
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-qualify v">Does your company sell Annual Contract Values of €25.000 or more?</p>
+    <h1 class="v d1">The HubSpot OS That <em>Guarantees</em> €2.000.000</h1>
+    <p class="hero-guarantee v d2">With a 100% money-back guarantee.</p>
   </div>
-</div>
+  <div class="hero-right v d2">
+    <p class="hero-body">
+      I've built an operating system that guarantees you <strong>€2.000.000 in qualified pipeline</strong> within a year of working together. This isn't marketing fluff — I pay everything back if you don't hit it.
+      <br><br>
+      What's an operating system? A proven way of working, for my business and every client I've run it with. You get a daily list of actions built into HubSpot that your team just has to execute.
+    </p>
+    <div class="hero-stats">
+      <div class="hstat">
+        <span class="hstat-n">50+</span>
+        <span class="hstat-l">HubSpot projects delivered</span>
+      </div>
+      <div class="hstat">
+        <span class="hstat-n">€5M</span>
+        <span class="hstat-l">Max ARR of clients we work with</span>
+      </div>
+      <div class="hstat">
+        <span class="hstat-n">100%</span>
+        <span class="hstat-l">Money-back if you don't hit €2M</span>
+      </div>
+    </div>
+    <div class="hero-actions">
+      <a href="#cta" class="btn-r">Check If You Qualify</a>
+      <a href="#product" class="hero-link">See what's included →</a>
+    </div>
+  </div>
+  <div class="hero-ghost" aria-hidden="true">€2M</div>
+</section>
+
 <section id="product" class="product">
   <div class="product-top">
     <div class="v">
