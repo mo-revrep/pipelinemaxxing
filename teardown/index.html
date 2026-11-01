@@ -32,7 +32,9 @@ h2{font-size:clamp(34px,5vw,56px);font-weight:800}
 .btn:hover{transform:translateY(-2px)}
 .btn-solid{background:var(--ink);color:var(--cream)}
 .btn-ghost{background:transparent;color:var(--ink)}
-.btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.btn:focus-visible,summary:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--ink);box-shadow:0 0 0 3px rgba(17,17,17,.12)}
+form.tried input:invalid,form.tried select:invalid{border-color:var(--red);box-shadow:0 0 0 3px rgba(232,0,29,.12)}
 .eyebrow{display:inline-flex;align-items:center;gap:10px;color:var(--mute)}
 .live{position:relative;width:10px;height:10px;flex:none}
 .live::before{content:"";position:absolute;inset:0;border-radius:50%;background:var(--red)}
@@ -271,7 +273,7 @@ footer nav{display:flex;gap:20px}
           <select id="jobtitle" name="jobtitle" required>
             <option value="">Choose one</option><option>Head of Sales</option><option>Head of Marketing</option><option>RevOps / Sales Ops</option><option>Founder / CEO</option><option>Other</option>
           </select></div>
-        <div class="field"><label for="website">Company website</label><input id="website" name="website" type="url" placeholder="https://" autocomplete="url"></div>
+        <div class="field"><label for="website">Company website</label><input id="website" name="website" type="text" inputmode="url" placeholder="www.yourcompany.com" autocomplete="url"></div>
         <div class="field full"><label for="message">What feels broken in your HubSpot right now?</label><textarea id="message" name="message" placeholder="e.g. Nobody trusts the pipeline report, leads go cold, deals sit in stages forever…"></textarea></div>
         <label class="consent"><input id="consent" type="checkbox" required> <span>I agree that my details are used to contact me about the Teardown. See the <a href="/datenschutz">privacy policy</a>.</span></label>
         <button class="btn btn-solid" type="submit">Send my Teardown request →</button>
@@ -359,6 +361,8 @@ const form=document.getElementById('leadform'), status=document.getElementById('
 form.addEventListener('submit', async e=>{
   e.preventDefault();
   status.className='status'; status.textContent='';
+  const w=form.elements.website; if(w.value && !/^https?:\/\//i.test(w.value.trim())) w.value='https://'+w.value.trim();
+  form.classList.add('tried');
   if(!form.checkValidity()){ form.reportValidity(); status.className='status err'; status.textContent='Please fill in the required fields and tick the box.'; return; }
   if(!HUBSPOT.portalId || !HUBSPOT.formGuid){
     status.className='status err';
