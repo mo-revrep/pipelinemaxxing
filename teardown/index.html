@@ -270,11 +270,11 @@ footer nav{display:flex;gap:20px}
         <div class="field"><label for="email">Work email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
         <div class="field"><label for="company">Company</label><input id="company" name="company" autocomplete="organization" required></div>
         <div class="field"><label for="jobtitle">Your role</label>
-          <select id="jobtitle" name="jobtitle" required>
+          <select id="jobtitle" name="role" required>
             <option value="">Choose one</option><option>Head of Sales</option><option>Head of Marketing</option><option>RevOps / Sales Ops</option><option>Founder / CEO</option><option>Other</option>
           </select></div>
         <div class="field"><label for="website">Company website</label><input id="website" name="website" type="text" inputmode="url" placeholder="www.yourcompany.com" autocomplete="url"></div>
-        <div class="field full"><label for="message">What feels broken in your HubSpot right now?</label><textarea id="message" name="message" placeholder="e.g. Nobody trusts the pipeline report, leads go cold, deals sit in stages forever…"></textarea></div>
+        <div class="field full"><label for="message">What feels broken in your HubSpot right now?</label><textarea id="message" name="what_feels_broken_in_your_hubspot_right_now" required placeholder="e.g. Nobody trusts the pipeline report, leads go cold, deals sit in stages forever…"></textarea></div>
         <label class="consent"><input id="consent" type="checkbox" required> <span>I agree that my details are used to contact me about the Teardown. See the <a href="/datenschutz">privacy policy</a>.</span></label>
         <button class="btn btn-solid" type="submit">Send my Teardown request →</button>
         <p class="status" id="status" role="status" aria-live="polite"></p>
@@ -370,7 +370,7 @@ form.addEventListener('submit', async e=>{
     document.getElementById('book').scrollIntoView({behavior:'smooth'});
     return;
   }
-  const names=['firstname','lastname','email','company','jobtitle','website','message'];
+  const names=['firstname','lastname','email','company','role','website','what_feels_broken_in_your_hubspot_right_now'];
   const fields=names.map(n=>({name:n,value:form.elements[n].value})).filter(f=>f.value);
   const btn=form.querySelector('button'); btn.disabled=true;
   try{
