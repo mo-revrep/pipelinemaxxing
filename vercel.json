@@ -1,0 +1,14 @@
+{
+  "redirects": [
+    {
+      "source": "/teardown",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/teardown/",
+      "destination": "/",
+      "permanent": false
+    }
+  ]
+}
