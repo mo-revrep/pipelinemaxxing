@@ -72,7 +72,7 @@ form.tried input:invalid,form.tried select:invalid{border-color:var(--red);box-s
 .pipe svg{width:100%;height:auto;display:block;overflow:visible}
 .drop{animation:fall 2.4s cubic-bezier(.5,0,.8,.4) infinite}
 .drop.d2{animation-delay:.8s}.drop.d3{animation-delay:1.6s}
-@keyframes fall{0%{transform:translateY(-6px);opacity:0}15%{opacity:1}80%{opacity:1}100%{transform:translateY(46px);opacity:0}}
+@keyframes fall{0%{transform:translateY(-8px);opacity:0}20%{opacity:1}75%{opacity:1}100%{transform:translateY(34px);opacity:0}}
 
 /* leaks */
 .leaks{background:var(--ink);color:var(--cream)}
@@ -205,25 +205,21 @@ footer nav{display:flex;gap:20px}
       </div>
     </div>
     <div class="pipe" aria-hidden="true">
-      <svg viewBox="0 0 460 300">
-        <text x="0" y="40" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="13" font-weight="600" letter-spacing="1.6" fill="#6f675f">YOUR PIPELINE</text>
+      <svg viewBox="0 0 480 290">
         <g font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="13" font-weight="700" letter-spacing="1.4" fill="#f0e8df" text-anchor="middle">
-          <rect x="0" y="62" width="122" height="40" rx="7" fill="#111"/><text x="61" y="87">LEAD</text>
-          <rect x="134" y="62" width="122" height="40" rx="7" fill="#111"/><text x="195" y="87">MEETING</text>
-          <rect x="268" y="62" width="122" height="40" rx="7" fill="#111"/><text x="329" y="87">DEAL</text>
+          <rect x="0" y="40" width="122" height="44" rx="8" fill="#111"/><text x="61" y="67">LEAD</text>
+          <rect x="134" y="40" width="122" height="44" rx="8" fill="#111"/><text x="195" y="67">MEETING</text>
+          <rect x="268" y="40" width="122" height="44" rx="8" fill="#111"/><text x="329" y="67">DEAL</text>
         </g>
-        <path d="M396,82 L420,82 M412,74 L420,82 L412,90" stroke="#111" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-        <text x="426" y="88" font-family="Inter, system-ui, sans-serif" font-weight="800" font-size="18" fill="#111">WON</text>
-        <g fill="#E8001D">
-          <path class="drop" d="M128,112 C132,119 135,123 135,125.5 A7,7 0 1 1 121,125.5 C121,123 124,119 128,112Z"/>
-          <path class="drop d2" d="M262,112 C266,119 269,123 269,125.5 A7,7 0 1 1 255,125.5 C255,123 258,119 262,112Z"/>
-          <path class="drop d3" d="M384,112 C388,119 391,123 391,125.5 A7,7 0 1 1 377,125.5 C377,123 380,119 384,112Z"/>
+        <path d="M398,62 L424,62 M416,54 L424,62 L416,70" stroke="#111" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <text x="430" y="68" font-family="Inter, system-ui, sans-serif" font-weight="800" font-size="18" fill="#111">WON</text>
+        <g fill="#E8001D"><path class="drop" d="M128,96 C132,103 135,107 135,109.5 A7,7 0 1 1 121,109.5 C121,107 124,103 128,96Z"/><path class="drop" d="M262,96 C266,103 269,107 269,109.5 A7,7 0 1 1 255,109.5 C255,107 258,103 262,96Z"/><path class="drop" d="M384,96 C388,103 391,107 391,109.5 A7,7 0 1 1 377,109.5 C377,107 380,103 384,96Z"/></g>
+        <g font-family="Inter, system-ui, sans-serif" font-size="15" font-weight="600" fill="#111" text-anchor="middle">
+          <text x="128" y="172">Never</text><text x="128" y="191">followed up</text>
+          <text x="262" y="172">Went</text><text x="262" y="191">silent</text>
+          <text x="384" y="172">Lost to</text><text x="384" y="191">timing</text>
         </g>
-        <g font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="12" font-weight="600" letter-spacing="1.2" fill="#6f675f" text-anchor="middle">
-          <text x="128" y="210">NO FOLLOW-UP</text><text x="262" y="210">GONE SILENT</text><text x="384" y="210">LOST TO TIMING</text>
-        </g>
-        <path d="M60,250 L400,250" stroke="#E8001D" stroke-width="2" stroke-dasharray="4 6"/>
-        <text x="230" y="282" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="17" fill="#111">Revenue you already paid to win</text>
+        <text x="0" y="262" font-family="Inter, system-ui, sans-serif" font-weight="800" font-size="20" fill="#111">Every drop is a deal you <tspan fill="#E8001D">already paid to win.</tspan></text>
       </svg>
     </div>
   </div>
@@ -283,7 +279,7 @@ footer nav{display:flex;gap:20px}
           </select></div>
         <div class="field"><label for="website">Company website</label><input id="website" name="website" type="text" inputmode="url" placeholder="www.yourcompany.com" autocomplete="url"></div>
         <div class="field full"><label for="message">What feels broken in your HubSpot right now?</label><textarea id="message" name="what_feels_broken_in_your_hubspot_right_now" required placeholder="e.g. Nobody trusts the pipeline report, leads go cold, deals sit in stages forever…"></textarea></div>
-        <label class="consent"><input id="consent" type="checkbox" required> <span>I agree that my details are used to contact me about the Teardown. See the <a href="/datenschutz">privacy policy</a>.</span></label>
+        <label class="consent"><input id="consent" type="checkbox" required> <span>I agree that my details are used to contact me about the Teardown.</span></label>
         <button class="btn btn-solid" type="submit">Send my Teardown request →</button>
         <p class="status" id="status" role="status" aria-live="polite"></p>
       </form>
@@ -345,8 +341,6 @@ footer nav{display:flex;gap:20px}
     <div class="me"><img src="mo_avatar.png" alt=""><div><b>Mohamad Saab</b>I find the revenue potential hiding in your CRM</div></div>
     <nav aria-label="Legal and social">
       <a href="https://www.linkedin.com/in/mdsb" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="/impressum">Impressum</a>
-      <a href="/datenschutz">Datenschutz</a>
     </nav>
   </div>
 </footer>
