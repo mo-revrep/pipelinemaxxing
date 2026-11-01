@@ -118,7 +118,7 @@ form .btn{grid-column:1/-1;justify-content:center;font-size:17px;padding:18px}
 /* booking */
 .book .wrap{padding-block:96px}
 .book h2{margin-top:14px}
-.cal{margin-top:40px;display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.4fr);border:1px solid var(--line);border-radius:20px;overflow:hidden;background:#fff;box-shadow:0 24px 48px rgba(17,17,17,.08)}
+.cal{margin-top:40px;max-width:1000px;display:block;border:1px solid var(--line);border-radius:20px;overflow:hidden;background:#fff;box-shadow:0 24px 48px rgba(17,17,17,.08)}
 @media (max-width:900px){.cal{grid-template-columns:minmax(0,1fr)}}
 .cal .info{background:var(--ink);color:var(--cream);padding:34px}
 .who{display:flex;gap:14px;align-items:center}
@@ -286,23 +286,6 @@ footer nav{display:flex;gap:20px}
     <span class="eyebrow mono"><span class="live"></span>Or skip the form</span>
     <h2>Book a free strategy call</h2>
     <div class="cal">
-      <div class="info">
-        <div class="who"><img src="mo_avatar.png" alt="Mohamad Saab"><div><b>Mohamad Saab</b><span>HubSpot &amp; RevOps · revrep</span></div></div>
-        <h3>Free strategy call</h3>
-        <div class="meta">
-          <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10l6-3v10l-6-3"/></svg>Video call</div>
-          <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Pick any open slot that suits you</div>
-          <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/><circle cx="12" cy="12" r="9"/></svg>English or German</div>
-        </div>
-        <div class="agenda">
-          <span class="mono" style="color:#a39a90">What we'll cover</span>
-          <ol>
-            <li>How your HubSpot is set up today</li>
-            <li>Where revenue is most likely leaking</li>
-            <li>Whether a full Teardown makes sense for you</li>
-          </ol>
-        </div>
-      </div>
       <div class="slot">
         <!-- HubSpot Meetings embed -->
         <div class="meetings-iframe-container" data-src="https://meetings-eu1.hubspot.com/revopsmaxxing/free-strategy-call?embed=true"></div>
