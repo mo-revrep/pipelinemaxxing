@@ -347,8 +347,8 @@ footer nav{display:flex;gap:20px}
 <script>
 /* ===== CONFIG: fill these in once the HubSpot form exists ===== */
 const HUBSPOT = {
-  portalId: "",   // your HubSpot portal ID (Settings > Account details)
-  formGuid: "",   // the form's ID (Marketing > Forms > the form's URL)
+  portalId: "27131454",
+  formGuid: "eeb2d0d2-72ff-42b8-a714-5f5f0d371ccd",
   endpoint: "https://api-eu1.hsforms.com/submissions/v3/integration/submit" // EU data centre; verify in HubSpot's docs
 };
 
@@ -379,7 +379,7 @@ form.addEventListener('submit', async e=>{
       body:JSON.stringify({fields,context:{pageUri:location.href,pageName:document.title},
         legalConsentOptions:{consent:{consentToProcess:true,text:'I agree that my details are used to contact me about the Teardown.'}}})
     });
-    if(!r.ok) throw new Error(r.status);
+    if(!r.ok){ let d=''; try{ const j=await r.json(); d=(j.errors||[]).map(e=>e.message).join(' ')||j.message||''; }catch(_){} console.error('HubSpot form error',r.status,d); throw new Error(r.status); }
     form.reset(); status.className='status ok'; status.textContent='Sent. I’ll get back to you personally.';
   }catch(err){
     status.className='status err'; status.textContent='That didn’t go through. Please try again, or book a call below.';
